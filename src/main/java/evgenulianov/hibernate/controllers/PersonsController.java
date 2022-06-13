@@ -25,13 +25,11 @@ public class PersonsController {
     @PostMapping("/save")
     public Persons save(@RequestBody Persons persons){
         return service.save(persons);
-//        return persons;
     }
 
     @PatchMapping ("/save")
     public Persons update(@RequestBody Persons persons){
         return service.save(persons);
-//        return persons;
     }
 
 
@@ -54,7 +52,6 @@ public class PersonsController {
     @DeleteMapping("/delete")
     public void delete(@RequestBody Persons persons){
         service.delete(persons);
-//        return persons;
     }
 
 }
