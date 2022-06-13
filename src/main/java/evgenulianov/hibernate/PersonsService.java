@@ -29,15 +29,19 @@ public class PersonsService {
     }
 
     public List<Persons> getPersonsByCity(String city){
-        return repository.findByCityOfLiving(city);
+        return repository.find(city);
     }
 
     public List<Persons> findByPersonIdAgeLessThanOrderByPersonIdAge(int personIdAgeLessThan){
-        return repository.findByPersonIdAgeLessThanOrderByPersonIdAge(personIdAgeLessThan);
+        return repository.find(personIdAgeLessThan);
     }
 
-    public Optional<Persons> findByPersonIdNameAndAndPersonIdSurname(String personIdName, String personIdSurname){
-        return repository.findByPersonIdNameAndAndPersonIdSurname(personIdName, personIdSurname);
+    public List<Persons> findByPersonIdNameAndAndPersonIdSurname(String personIdName, String personIdSurname){
+        return repository.find(personIdName, personIdSurname);
+    }
+
+    public Optional<Persons> findByPersonIdNameAndAndPersonIdSurname(String personIdName, String personIdSurname, int personIdAge){
+        return repository.find(personIdName, personIdSurname, personIdAge);
     }
 
 }
