@@ -39,10 +39,18 @@ public class PersonsController {
     }
 
     @GetMapping("/by-fullName")
-    public ResponseEntity<Persons> findByPersonIdNameAndAndPersonIdSurname(
+    public List<Persons> findByPersonIdNameAndAndPersonIdSurname(
             @RequestParam(name = "name") String personIdName,
             @RequestParam(name = "surname") String personIdSurname) {
-        Optional<Persons> result = service.findByPersonIdNameAndAndPersonIdSurname(personIdName, personIdSurname);
+        return service.findByPersonIdNameAndAndPersonIdSurname(personIdName, personIdSurname);
+    }
+
+    @GetMapping("/by-fullNameAge")
+    public ResponseEntity<Persons> findByPersonIdNameAndAndPersonIdSurname(
+            @RequestParam(name = "name") String personIdName,
+            @RequestParam(name = "surname") String personIdSurname,
+            @RequestParam(name = "age") int personIdAge) {
+        Optional<Persons> result = service.findByPersonIdNameAndAndPersonIdSurname(personIdName, personIdSurname, personIdAge);
 
         if (result.isEmpty())
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
