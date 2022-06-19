@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1655102168444-1
+      author: EUlyanov (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  name: phone_number
+                  type: VARCHAR(255)
+              - column:
+                  name: city_of_living
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_persons
+                  name: name
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_persons
+                  name: surname
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_persons
+                  name: age
+                  type: INT
+            tableName: persons
+

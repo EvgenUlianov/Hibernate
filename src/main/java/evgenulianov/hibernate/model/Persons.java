@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "PERSONS")
+@Table(name = "persons")
 public class Persons {
 
     @EmbeddedId

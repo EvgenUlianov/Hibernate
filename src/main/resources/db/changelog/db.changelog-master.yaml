@@ -1,0 +1,9 @@
+databaseChangeLog:
+#  - includeAll:
+#      relativeToChangeLogFile: true
+#      errorIfMissingOrEmpty: true
+#      path: "db/changelog/changes"
+  - include:
+      file: db/changelog/changes/001-changelog.yaml
+  - include:
+      file: db/changelog/changes/002-Fill.yaml
