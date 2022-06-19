@@ -16,7 +16,10 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableGlobalMethodSecurity(jsr250Enabled = true)
+@EnableGlobalMethodSecurity(
+        prePostEnabled = true,
+        securedEnabled = true,
+        jsr250Enabled = true)
 public class WebSecurityConfig extends GlobalMethodSecurityConfiguration {
     //WebSecurityConfigurerAdapter deprecated
     //https://spring.io/blog/2022/02/21/spring-security-without-the-websecurityconfigureradapter

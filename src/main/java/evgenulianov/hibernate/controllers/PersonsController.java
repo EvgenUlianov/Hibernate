@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,7 @@ public class PersonsController {
     private final PersonsService service;
 
     @GetMapping("/by-city")
-    @RolesAllowed({"PERSONS_READ"})
+    @Secured({"PERSONS_READ"})
     public List<Persons> getPersonsByCity(@RequestParam String city) {
         return service.getPersonsByCity(city);
     }
@@ -42,6 +43,14 @@ public class PersonsController {
     @GetMapping("/by-age")
     @RolesAllowed({"PERSONS_READ"})
     public List<Persons> findByPersonIdAgeLessThanOrderByPersonIdAge(@RequestParam(name = "age") int age) {
+        return service.findByPersonIdAgeLessThanOrderByPersonIdAge(age);
+    }
+
+    @GetMapping("/by-ageUsername")
+    @PreAuthorize("#username == authentication.principal.username")
+    public List<Persons> findByPersonIdAgeLessThanOrderByPersonIdAgeAndUsername(
+            @RequestParam(name = "age") int age,
+            @RequestParam(name = "username") String username) {
         return service.findByPersonIdAgeLessThanOrderByPersonIdAge(age);
     }
 
@@ -67,7 +76,7 @@ public class PersonsController {
     }
 
     @DeleteMapping("/delete")
-    @RolesAllowed({"PERSONS_DELETE"})
+    @PreAuthorize("hasRole('PERSONS_WRITE') or hasRole('PERSONS_DELETE')")
     public void delete(@RequestBody Persons persons){
         service.delete(persons);
     }
